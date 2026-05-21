@@ -17,18 +17,36 @@ c.fillStyle = 'red'
 c.fillRect(this.position.x, this.position.y, 50, 150)
 
  }
+
+ update() {
+    
+ }
 }
 
+
+
 const player = new Sprite({
+    position: {
     x: 0,
     y: 0
+    },
+    velocity: {
+       x: 0,
+       y: 0
+    }
 })
 
 player.draw()
 
-const enemy = new Sprite({
-x: 1840,
-y: 0
+const enemy  = new Sprite({
+    position: {
+    x: 1899,
+    y: 925
+    },
+    velocity: {
+       x: 0,
+       y: 0
+    }
 })
 
 enemy.draw()
