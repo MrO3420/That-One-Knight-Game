@@ -34,6 +34,9 @@ c.fillRect(this.position.x, this.position.y, 50, this.height)
  }
 }
 
+const playerSprite = new Image();
+playerSprite.src = "/assets/_idle.gif";
+
 
 
 const player = new Sprite({
@@ -84,6 +87,17 @@ const keys = {
 
 }
 
+function drawPlayer() {
+  ctx.drawImage(
+  playerSprite,
+  player.x - camera.x,
+  player.y,
+  player.width,
+  player.height
+);
+}
+
+
 function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
@@ -94,13 +108,15 @@ function animate() {
     player.velocity.x = 0
     enemy.velocity.x = 0
 
-    //player movement
-if (keys.a.pressed && lastKey === 'a') {
+    //player 1 movement
+if (keys.a.pressed && player.lastKey === 'a') {
     player.velocity.x = -6
- } else if (keys.d.pressed && lastKey === 'd')  {
+ } else if (keys.d.pressed && player.lastKey === 'd')  {
   player.velocity.x = 6
  }
 
+
+    //player 2 movement
 if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
     enemy.velocity.x = -6
  } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight')  {
@@ -108,12 +124,6 @@ if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
  }
 
   }
-
- 
-
-  
-
-
 
 animate()
 window.addEventListener('keydown', (event) => {
