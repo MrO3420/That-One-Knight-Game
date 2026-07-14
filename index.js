@@ -67,7 +67,7 @@ const enemy = new Sprite({
         x: 0,
         y: 0
     },
-    imageSrc: './assets/_Idle.gif'
+    imageSrc: './assets/2Idle.gif'
 })
 
 
@@ -150,8 +150,11 @@ animate()
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'd':
-            keys.d.pressed = true
-            player.lastKey = 'd'
+            // keys.d.pressed = true
+            // player.lastKey = 'd'
+            // console.log("pressed d")
+            player.position.x = +20
+
             break
 
         case 'a':
@@ -183,30 +186,30 @@ window.addEventListener('keydown', (event) => {
 
 
 
-window.addEventListener('keyup', (event) => {
-    switch (event.key) {
-        case 'd':
-            keys.d.pressed = false
-            break
-        case 'a':
-            keys.a.pressed = false
-            break
-        case 'w':
-            keys.w.pressed = false
-            break
-    }
+// window.addEventListener('keyup', (event) => {
+//     switch (event.key) {
+//         case 'd':
+//             keys.d.pressed = false
+//             break
+//         case 'a':
+//             keys.a.pressed = false
+//             break
+//         case 'w':
+//             keys.w.pressed = false
+//             break
+//     }
 
-    // enemy keys
-    switch (event.key) {
-        case 'ArrowRight':
-            keys.ArrowRight.pressed = false
-            break
-        case 'ArrowLeft':
-            keys.ArrowLeft.pressed = false
-            break
-        case 'ArrowUp':
-            keys.ArrowUp.pressed = false
-            break
-    }
-    console.log(event.key);
-})
+//     // enemy keys
+//     switch (event.key) {
+//         case 'ArrowRight':
+//             keys.ArrowRight.pressed = false
+//             break
+//         case 'ArrowLeft':
+//             keys.ArrowLeft.pressed = false
+//             break
+//         case 'ArrowUp':
+//             keys.ArrowUp.pressed = false
+//             break
+//     }
+//     console.log(event.key);
+// })
