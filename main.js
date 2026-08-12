@@ -46,22 +46,23 @@ let playerTwoIsAttacking = false;
 function preload() {
 
     //add heart image for player health
-    this.load.image("heart", "../assets/heart.png");
+    this.load.image("heart", "assets/heart.png");
 
-    this.load.image("playerIdle", "../assets/1/Idle.gif");
-    this.load.image("playerRun", "../assets/1/Run.gif");
-    this.load.image("playerJump", "../assets/1/Jump.gif");
-    this.load.image("playerFall", "../assets/1/Fall.gif");
+    this.load.image("playerIdle", "assets/1/Idle.gif");
+    this.load.image("playerRun", "assets/1/Run.gif");
+    this.load.image("playerJump", "assets/1/Jump.gif");
+    this.load.image("playerFall", "assets/1/Fall.gif");
 
     // Player 1 attack spritesheet.
     // attack.png is 600 x 160, made from 120 x 80 frames.
-    this.load.spritesheet("playerAttack", "../assets/1/AttackCombo.png", {
+    
+    this.load.spritesheet("playerAttack", "assets/1/AttackCombo.png", {
         frameWidth: 120,
         frameHeight: 80
         
     });
 
-    this.load.spritesheet("playerTwoAttack", "../assets/2/2AttackCombo.png", {
+    this.load.spritesheet("playerTwoAttack", "assets/2/2AttackCombo.png", {
         frameWidth: 120,
         frameHeight: 80
         
@@ -69,10 +70,10 @@ function preload() {
 
 
 
-    this.load.image("playerTwoIdle", "../assets/2/2Idle.gif");
-    this.load.image("playerTwoRun", "../assets/2/2Run.gif");
-    this.load.image("playerTwoJump", "../assets/2/2Jump.gif");
-    this.load.image("playerTwoFall", "../assets/2/2JumpFallInbetween.gif");
+    this.load.image("playerTwoIdle", "assets/2/2Idle.gif");
+    this.load.image("playerTwoRun", "assets/2/2Run.gif");
+    this.load.image("playerTwoJump", "assets/2/2Jump.gif");
+    this.load.image("playerTwoFall", "assets/2/2JumpFallInbetween.gif");
 
     // Player 2 will use the same "playerAttack" spritesheet as Player 1.
 }
@@ -162,7 +163,7 @@ function create() {
     // add player 2 attack animation
     this.anims.create({
         key: "playerTwoAttackAnimation",
-        frames: this.anims.generateFrameNumbers("playerAttack", { start: 0, end: 9 }),
+        frames: this.anims.generateFrameNumbers("playerTwoAttack", { start: 0, end: 9 }),
         frameRate: 10,
         repeat: 0 // 0 means play one time
     });
