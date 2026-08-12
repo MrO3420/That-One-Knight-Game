@@ -129,7 +129,8 @@ function create() {
         jump: Phaser.Input.Keyboard.KeyCodes.UP,
 
         //add attack key
-        attack: Phaser.Input.Keyboard.KeyCodes.SHIFT
+        attack: Phaser.Input.Keyboard.KeyCodes.NUMPADONE
+
     });
 
     // 3 hearts for Player 1 on the left, 3 hearts for Player 2 on the right.
