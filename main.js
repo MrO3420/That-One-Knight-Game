@@ -129,7 +129,7 @@ function create() {
         jump: Phaser.Input.Keyboard.KeyCodes.UP,
 
         //add attack key
-        attack: Phaser.Input.Keyboard.KeyCodes.NUMPADONE
+        attack: Phaser.Input.Keyboard.KeyCodes.ENTER
 
     });
 
@@ -188,7 +188,7 @@ function create() {
 
 function update() {
     // -----------------------------
-    // PLAYER ONE UPDATES
+    // PLAYER ONE 
     // -----------------------------
     const playerBody = player.body;
 
@@ -206,7 +206,7 @@ function update() {
         playerBody.setVelocityY(-450);
     }
 
-    //new code to handle player attack animation and state ⬇️
+    //code to handle player attack animation and state
 
     if (!playerIsAttacking) {
         if (!playerBody.blocked.down) {
@@ -228,7 +228,7 @@ function update() {
     }
 
     // -----------------------------
-    // PLAYER TWO UPDATES
+    // PLAYER TWO 
     // -----------------------------
 
     const playerTwoBody = playerTwo.body;
@@ -247,7 +247,7 @@ function update() {
         playerTwoBody.setVelocityY(-450);
     }
 
-    //new code to handle player attack animation and state ⬇️
+    //code to handle player attack animation and state 
     if (!playerTwoIsAttacking) {
         if (!playerTwoBody.blocked.down) {
             if (playerTwoBody.velocity.y < 0) {
