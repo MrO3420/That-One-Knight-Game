@@ -133,9 +133,9 @@ function create() {
 
     });
 
-    // 3 hearts for Player 1 on the left, 3 hearts for Player 2 on the right.
+    // 5 hearts for Player 1 on the left, 5 hearts for Player 2 on the right.
     // for loop ( kinda advanced - explain)
-    for (let i = 0; i < 3; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
         this.add.image(40 + i * 45, 40, "heart").setScale(0.07);
         this.add.image(gameWidth - 40 - i * 45, 40, "heart").setScale(0.07);
     }
