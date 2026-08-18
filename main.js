@@ -43,8 +43,13 @@ let playerTwoIsAttacking = false;
 let playerHearts = [];
 let playerTwoHearts = [];
 let gameOver = false;
+
+
+
+
 // players must be this close for an attack to remove a heart
 const attackRange = 300;
+
 
 //let debounce = false
 //let debounce2 = false
@@ -59,7 +64,7 @@ const attackRange = 300;
 
 function preload() {
 
-    //add heart image for player health
+    // heart image for player health
     this.load.image("heart", "../assets/heart.png");
 
     this.load.image("playerIdle", "../assets/1/Idle.gif");
@@ -76,7 +81,7 @@ function preload() {
 //Background
 this.load.image('background', 'assets/CastleBackground.jpg')
 
-
+//Player Two Animations
     this.load.spritesheet("playerTwoAttack", "../assets/2/2attack.png", {
         frameWidth: 120,
         frameHeight: 80
@@ -88,8 +93,11 @@ this.load.image('background', 'assets/CastleBackground.jpg')
     this.load.image("playerTwoJump", "../assets/2/2Jump.gif");
     this.load.image("playerTwoFall", "../assets/2/2JumpFallInbetween.gif");
 
-    // Player 2 will use the same "playerAttack" spritesheet as Player 1.
+    
 }
+
+
+
 
 function create() {
 
@@ -99,7 +107,12 @@ function create() {
     gameOver = false;
     playerIsAttacking = false;
     playerTwoIsAttacking = false;
-// Background
+
+
+
+
+
+// Background for the game
 this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
 
     this.add.image(0, 0, 'background')
@@ -107,11 +120,11 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
         .setDisplaySize(window.innerWidth, window.innerHeight)
 
 
-    // create a ground rectangle that spans the width of the game and is 50 pixels tall
+    // a ground rectangle that spans the width of the game and is 50 pixels tall
     ground = this.add.rectangle(gameWidth / 2, gameHeight - 25, gameWidth, 50, 0x8b5a2b);
     this.physics.add.existing(ground, true);
 
-    // player 1 and 2 add physics 
+    // player 1 and 2 physics 
     player = this.physics.add.sprite(120, gameHeight - 800, "playerIdle");
     this.physics.add.existing(player);
     player.setScale(6);
@@ -120,19 +133,22 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
     this.physics.add.existing(playerTwo);
     playerTwo.setScale(6);
 
-    // player 1 and 2 add collider boxes ( SO THEY DON'T FALL OFF THE SCREEN )
+    // player 1 and 2  collider boxes ( SO THEY DON'T FALL OFF THE SCREEN )
     const playerBody = player.body;
     playerBody.setBounce(0.05);
 
     const playerTwoBody = playerTwo.body;
     playerTwoBody.setBounce(0.05);
 
-    // add collider between player and ground
+    //  collider between player and ground
     this.physics.add.collider(player, ground);
     this.physics.add.collider(playerTwo, ground);
 
+
+
+
     // -----------------------------
-    // 3) controls for player 1 and 2
+    //  controls for player 1 and 2
     // -----------------------------
 
     keys = this.input.keyboard.addKeys({
@@ -140,7 +156,7 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
         right: Phaser.Input.Keyboard.KeyCodes.D,
         jump: Phaser.Input.Keyboard.KeyCodes.W,
 
-        //add attack key
+        // attack key for player one
         attack: Phaser.Input.Keyboard.KeyCodes.SPACE
     });
 
@@ -149,17 +165,17 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
         right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
         jump: Phaser.Input.Keyboard.KeyCodes.UP,
 
-        //add attack key
+        // attack key for player two
         attack: Phaser.Input.Keyboard.KeyCodes.ENTER
     });
 
-    // 3 hearts for Player 1 on the left, 3 hearts for Player 2 on the right.
-    // for loop ( kinda advanced - explain)
+    // 10 hearts for Player 1 on the left, 10 hearts for Player 2 on the right.
+    // for loop 
     playerHearts = [];
     playerTwoHearts = [];
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 15; i += 1) {
         playerHearts.push(this.add.image(40 + i * 45, 40, "heart").setScale(0.07));
-        playerTwoHearts.push(this.add.image(gameWidth - 420 + i * 45, 40, "heart").setScale(0.07));
+        playerTwoHearts.push(this.add.image(gameWidth - 700 + i * 45, 40, "heart").setScale(0.07));
     }
 
     this.add.text(gameWidth / 2, 40, "Reset", {
@@ -184,7 +200,7 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
         this.physics.world.setBounds(0, 0, newWidth, newHeight);
     });
 
-    // add player attack animation
+    //  player attack animation
     this.anims.create({
         key: "playerAttackAnimation",
         frames: this.anims.generateFrameNumbers("playerAttack", { start: 0, end: 9 }),
@@ -192,7 +208,7 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
         repeat: 0 // 0 means play one time
     });
 
-    // add player 2 attack animation
+    //  player 2 attack animation
     this.anims.create({
         key: "playerTwoAttackAnimation",
         frames: this.anims.generateFrameNumbers("playerTwoAttack", { start: 0, end: 9 }),
@@ -200,7 +216,7 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
         repeat: 0 // 0 means play one time
     });
 
-    // add event listeners for when the attack animations complete ( 'go back to idle')
+    // event listeners for when the attack animations complete ( 'go back to idle')
     player.on("animationcomplete", (animation) => {
         if (animation.key === "playerAttackAnimation") {
             playerIsAttacking = false;
@@ -209,7 +225,7 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
         }
     });
 
-    // add event listeners for when the attack animations complete ( 'go back to idle')
+    // event listeners for when the attack animations complete ( 'go back to idle')
     playerTwo.on("animationcomplete", (animation) => {
         if (animation.key === "playerTwoAttackAnimation") {
             playerTwoIsAttacking = false;
@@ -219,13 +235,16 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
     });
 }
 
+
+
+
 function update() {
     if (gameOver) {
         return;
     }
 
     // -----------------------------
-    // PLAYER ONE UPDATES
+    // PLAYER ONE 
     // -----------------------------
     const playerBody = player.body;
 
@@ -243,7 +262,7 @@ function update() {
         playerBody.setVelocityY(-450);
     }
 
-    //new code to handle player attack animation and state ⬇️
+    // code to handle player attack animation and state 
 
     if (!playerIsAttacking) {
       //  debounce = true;
@@ -268,12 +287,19 @@ function update() {
         if (Phaser.Math.Distance.Between(player.x, player.y, playerTwo.x, playerTwo.y) < attackRange) {
             if (loseHeart(playerTwoHearts)) {
                 showWinScreen(this, "Player 1 Wins!");
+
+
+    
             }
         }
     }
 
+
+
+
+
     // -----------------------------
-    // PLAYER TWO UPDATES
+    // PLAYER TWO 
     // -----------------------------
 
     const playerTwoBody = playerTwo.body;
@@ -341,4 +367,21 @@ function showWinScreen(scene, message) {
         fontSize: "64px",
         fill: "#ffffff"
     }).setOrigin(0.5);
+}
+
+
+
+function tryAttack() {
+    let currentTime = Date.now();
+
+    if(currentTime - lastAttackTime >= cooldownDuration) {
+        executeAttack();
+        lastAttackTime = currentTime;
+    } else {
+        console.log("Attack is on cooldown!");
+    }
+}
+
+function executeAttack(){
+    console.log("Player attacks!");
 }
