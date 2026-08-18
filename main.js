@@ -45,8 +45,6 @@ let playerTwoHearts = [];
 let gameOver = false;
 
 
-
-
 // players must be this close for an attack to remove a heart
 const attackRange = 300;
 
@@ -58,8 +56,6 @@ const attackRange = 300;
 // -----------------------------
 // 3) scene lifecycle methods
 // -----------------------------
-
-
 
 
 function preload() {
@@ -96,9 +92,6 @@ this.load.image('background', 'assets/CastleBackground.jpg')
     
 }
 
-
-
-
 function create() {
 
     //game width and height variables for easier access
@@ -107,10 +100,6 @@ function create() {
     gameOver = false;
     playerIsAttacking = false;
     playerTwoIsAttacking = false;
-
-
-
-
 
 // Background for the game
 this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
@@ -143,8 +132,6 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
     //  collider between player and ground
     this.physics.add.collider(player, ground);
     this.physics.add.collider(playerTwo, ground);
-
-
 
 
     // -----------------------------
@@ -236,8 +223,6 @@ this.add.image(window.innerWidth / 2, window.innerHeight / 2, 'background');
 }
 
 
-
-
 function update() {
     if (gameOver) {
         return;
@@ -293,9 +278,6 @@ function update() {
             }
         }
     }
-
-
-
 
 
     // -----------------------------
@@ -368,7 +350,6 @@ function showWinScreen(scene, message) {
         fill: "#ffffff"
     }).setOrigin(0.5);
 }
-
 
 
 function tryAttack() {
